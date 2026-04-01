@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import FamilyMembersTable from "./FamilyMembersTable";
+import StudentDetailsTable from "./StudentDetailsTable";
 
 export default function App() {
   const [formData, setFormData] = useState({
@@ -60,117 +62,96 @@ export default function App() {
             ઘરના અન્ય સભ્યોની વિગત :-
           </h3>
 
-          <table className="w-full border text-sm">
-            <thead>
-              <tr>
-                <th className="border p-2">નં.</th>
-                <th className="border p-2">નામ</th>
-                <th className="border p-2">મોબાઈલ નંબર</th>
-              </tr>
-            </thead>
-            <tbody>
-              {[...Array(6)].map((_, i) => (
-                <tr key={i}>
-                  <td className="border p-2 text-center">{i + 1}</td>
-                  <td className="border p-2">
-                    <input className="w-full outline-none" />
-                  </td>
-                  <td className="border p-2">
-                    <input className="w-full outline-none" />
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+          <FamilyMembersTable />
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-4 mt-10">
 
           {/* Student Name */}
-          <div>
-            <label className="block font-medium mb-1">
+          <div className="flex items-center gap-2">
+            <label className="font-medium whitespace-nowrap">
               વિદ્યાર્થીનું નામ (ગોત્ર સાથે) :-
             </label>
             <input
               type="text"
               name="studentName"
               onChange={handleChange}
-              className="w-full border-b outline-none"
+              className="flex-1 border-b outline-none"
             />
           </div>
 
           {/* Father & Mother */}
           <div className="grid grid-cols-2 gap-4">
-            <div>
-              <label>પિતાનું નામ :-</label>
+            <div className="flex items-center gap-2">
+              <label className="whitespace-nowrap">પિતાનું નામ :-</label>
               <input
                 type="text"
                 name="fatherName"
                 onChange={handleChange}
-                className="w-full border-b outline-none"
+                className="flex-1 border-b outline-none"
               />
             </div>
-            <div>
-              <label>માતાનું નામ :-</label>
+            <div className="flex items-center gap-2">
+              <label className="whitespace-nowrap">માતાનું નામ :-</label>
               <input
                 type="text"
                 name="motherName"
                 onChange={handleChange}
-                className="w-full border-b outline-none"
+                className="flex-1 border-b outline-none"
               />
             </div>
           </div>
 
           {/* Mobile */}
-          <div>
-            <label>મોબાઈલ નંબર :-</label>
+          <div className="flex items-center gap-2">
+            <label className="whitespace-nowrap">મોબાઈલ નંબર :-</label>
             <input
               type="text"
               name="mobile"
               onChange={handleChange}
-              className="w-full border-b outline-none"
+              className="flex-1 border-b outline-none"
             />
           </div>
 
           {/* Address */}
-          <div>
-            <label>ઘરનું સરનામું :-</label>
+          <div className="flex items-center gap-2">
+            <label className="whitespace-nowrap">ઘરનું સરનામું :-</label>
             <textarea
               name="address"
               onChange={handleChange}
-              className="w-full border-b outline-none"
+              className="flex-1 border-b outline-none"
             />
           </div>
 
           {/* School Name */}
-          <div>
-            <label>શાળાનું નામ :-</label>
+          <div className="flex items-center gap-2">
+            <label className="whitespace-nowrap">શાળાનું નામ :-</label>
             <input
               type="text"
               name="schoolName"
               onChange={handleChange}
-              className="w-full border-b outline-none"
+              className="flex-1 border-b outline-none"
             />
           </div>
 
           {/* Standard */}
-          <div>
-            <label>ધોરણ :-</label>
+          <div className="flex items-center gap-2">
+            <label className="whitespace-nowrap">ધોરણ :-</label>
             <input
               type="text"
               name="standard"
               onChange={handleChange}
-              className="w-full border-b outline-none"
+              className="flex-1 border-b outline-none"
             />
           </div>
 
           {/* School Address */}
-          <div>
-            <label>શાળાનું સરનામું :-</label>
+          <div className="flex items-center gap-2">
+            <label className="whitespace-nowrap">શાળાનું સરનામું :-</label>
             <textarea
               name="schoolAddress"
               onChange={handleChange}
-              className="w-full border-b outline-none"
+              className="flex-1 border-b outline-none"
             />
           </div>
 
@@ -180,32 +161,7 @@ export default function App() {
               ઘરમાં જે ભણતા હોયે એમની વિગત :-
             </h3>
 
-            <table className="w-full border text-sm">
-              <thead>
-                <tr>
-                  <th className="border p-2">નં.</th>
-                  <th className="border p-2">નામ</th>
-                  <th className="border p-2">ધોરણ</th>
-                  <th className="border p-2">શાળાનું નામ</th>
-                </tr>
-              </thead>
-              <tbody>
-                {[...Array(6)].map((_, i) => (
-                  <tr key={i}>
-                    <td className="border p-2 text-center">{i + 1}</td>
-                    <td className="border p-2">
-                      <input className="w-full outline-none" />
-                    </td>
-                    <td className="border p-2">
-                      <input className="w-full outline-none" />
-                    </td>
-                    <td className="border p-2">
-                      <input className="w-full outline-none" />
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+            <StudentDetailsTable />
           </div>
 
           {/* Submit */}
