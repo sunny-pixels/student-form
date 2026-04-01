@@ -12,6 +12,12 @@ const studentSchema = new mongoose.Schema({
 });
 
 const formSchema = new mongoose.Schema({
+  registrationNumber: {
+    type: String,
+    unique: true,
+    required: true,
+    index: true
+  },
   studentName: String,
   fatherName: String,
   motherName: String,

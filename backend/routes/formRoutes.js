@@ -3,6 +3,30 @@ const router = express.Router();
 const Form = require("../models/Form");
 const upload = require("../config/cloudinary");
 
+// Helper function to generate sequential registration number
+async function generateRegistrationNumber() {
+  const currentYear = new Date().getFullYear();
+  const prefix = `SSPT${currentYear}`;
+  
+  // Find the last registration number for current year
+  const lastForm = await Form.findOne({
+    registrationNumber: new RegExp(`^${prefix}`)
+  }).sort({ registrationNumber: -1 });
+  
+  let sequentialNumber = 1;
+  
+  if (lastForm && lastForm.registrationNumber) {
+    // Extract the last 4 digits and increment
+    const lastNumber = parseInt(lastForm.registrationNumber.slice(-4));
+    sequentialNumber = lastNumber + 1;
+  }
+  
+  // Pad with zeros to make it 4 digits
+  const paddedNumber = sequentialNumber.toString().padStart(4, '0');
+  
+  return `${prefix}${paddedNumber}`;
+}
+
 // Save form with file uploads (files optional for testing)
 router.post("/submit", (req, res, next) => {
   // Make file upload optional
@@ -56,11 +80,22 @@ router.post("/submit", (req, res, next) => {
     console.log("=== Saving to database ===");
     console.log(JSON.stringify(formData, null, 2));
     
+    // Generate unique registration number
+    const registrationNumber = await generateRegistrationNumber();
+    console.log("✓ Generated registration number:", registrationNumber);
+    
+    formData.registrationNumber = registrationNumber;
+    
     const newForm = new Form(formData);
     const savedForm = await newForm.save();
     console.log("✓ Saved to database successfully with ID:", savedForm._id);
     
-    res.json({ message: "Form saved successfully", success: true, id: savedForm._id });
+    res.json({ 
+      message: "Form saved successfully", 
+      success: true, 
+      id: savedForm._id,
+      registrationNumber: registrationNumber
+    });
   } catch (error) {
     console.error("❌ Error:", error.message);
     console.error("Stack:", error.stack);
@@ -75,6 +110,26 @@ router.get("/all", async (req, res) => {
     res.json(data);
   } catch (error) {
     res.status(500).json({ error: error.message });
+  }
+});
+
+// Search by registration number (for admin panel)
+router.get("/search/:registrationNumber", async (req, res) => {
+  try {
+    const form = await Form.findOne({ 
+      registrationNumber: req.params.registrationNumber 
+    });
+    
+    if (!form) {
+      return res.status(404).json({ 
+        error: "Registration number not found", 
+        success: false 
+      });
+    }
+    
+    res.json({ success: true, data: form });
+  } catch (error) {
+    res.status(500).json({ error: error.message, success: false });
   }
 });
 
