@@ -147,8 +147,8 @@ export default function App() {
           }
         }} className="space-y-6">
 
-          <div className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-3 px-4 rounded-lg mb-6">
-            <h2 className="text-center font-semibold text-base sm:text-lg">વિદ્યાર્થીની વિગત</h2>
+          <div className="mb-6">
+            <h2 className="text-xl sm:text-2xl font-bold text-blue-900 pb-3 border-b-4 border-blue-600">વિદ્યાર્થીની વિગત</h2>
           </div>
 
           {/* Student Name */}
