@@ -21,6 +21,9 @@ const formSchema = new mongoose.Schema({
   standard: String,
   schoolAddress: String,
 
+  resultFile: String,
+  aadharFile: String,
+
   familyMembers: [familySchema],
   students: [studentSchema],
 

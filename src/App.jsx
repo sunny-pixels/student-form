@@ -22,10 +22,19 @@ export default function App() {
     { name: "", class: "", school: "" },
   ]);
 
+  const [files, setFiles] = useState({
+    resultFile: null,
+    aadharFile: null,
+  });
+
   const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleFileChange = (e) => {
+    setFiles({ ...files, [e.target.name]: e.target.files[0] });
   };
 
   const handleSubmit = async (e) => {
@@ -33,24 +42,40 @@ export default function App() {
     setLoading(true);
 
     try {
-      const payload = {
+      const formDataToSend = new FormData();
+      
+      const dataToSend = {
         ...formData,
         familyMembers,
         students,
       };
+      
+      console.log("=== Frontend: Preparing to send ===");
+      console.log("Form data:", dataToSend);
+      console.log("Files:", files);
+      
+      formDataToSend.append("formData", JSON.stringify(dataToSend));
 
-      console.log("Sending data:", payload);
+      if (files.resultFile) {
+        formDataToSend.append("resultFile", files.resultFile);
+        console.log("Appending resultFile:", files.resultFile.name);
+      }
+      
+      if (files.aadharFile) {
+        formDataToSend.append("aadharFile", files.aadharFile);
+        console.log("Appending aadharFile:", files.aadharFile.name);
+      }
+
+      console.log("Sending to:", `${import.meta.env.VITE_API_URL}/api/form/submit`);
 
       const response = await fetch(`${import.meta.env.VITE_API_URL}/api/form/submit`, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(payload),
+        body: formDataToSend,
       });
 
       const data = await response.json();
-      
+      console.log("Response:", data);
+
       if (response.ok) {
         alert("Form submitted successfully!");
         // Reset form
@@ -66,6 +91,12 @@ export default function App() {
         });
         setFamilyMembers([{ name: "", mobile: "" }]);
         setStudents([{ name: "", class: "", school: "" }]);
+        setFiles({ resultFile: null, aadharFile: null });
+        
+        // Reset file inputs
+        document.querySelectorAll('input[type="file"]').forEach(input => {
+          input.value = '';
+        });
       } else {
         alert("Error: " + (data.error || "Failed to submit"));
       }
@@ -83,13 +114,13 @@ export default function App() {
 
         {/* Header */}
         <div className="border-b-2 border-red-600 pb-4 mb-6">
-          <div className="flex flex-col items-center mb-4">
-            <img 
-              src="/logo-1.png" 
-              alt="શ્રી શ્રીયાદે પ્રજાપતિ ચેરીટેબલ ટ્રસ્‍ટ" 
+          {/* <div className="flex flex-col items-center mb-4">
+            <img
+              src="/logo-1.png"
+              alt="શ્રી શ્રીયાદે પ્રજાપતિ ચેરીટેબલ ટ્રસ્‍ટ"
               className="h-20 sm:h-24 w-auto mb-3"
             />
-          </div>
+          </div> */}
           <h1 className="text-center font-bold text-xl sm:text-2xl text-red-700 mb-2">
             જય શ્રી શ્રીયાદેમાં
           </h1>
@@ -136,15 +167,15 @@ export default function App() {
           </div>
         </div>
 
-        {/* Family Members Table */}
-        <div className="mb-8">
+        {/* Student Table with class and school name */}
+        <div className="mt-8 mb-8">
           <h3 className="font-semibold text-base sm:text-lg text-blue-900 mb-4 pb-2 border-b-2 border-blue-200">
-            ઘરના અન્ય સભ્યોની વિગત
+            ઘરમાં જે ભણતા હોયે એમની વિગત
           </h3>
 
-          <FamilyMembersTable 
-            members={familyMembers}
-            setMembers={setFamilyMembers}
+          <StudentDetailsTable
+            students={students}
+            setStudents={setStudents}
           />
         </div>
 
@@ -280,21 +311,60 @@ export default function App() {
             </div>
           </div>
 
-          {/* Student Table with class and school name */}
-          <div className="mt-8">
+          {/* Document Uploads Section */}
+          <div className="bg-blue-50 border-l-4 border-blue-600 p-4 sm:p-6 rounded-r-lg">
+            <h3 className="font-semibold text-base sm:text-lg text-blue-900 mb-4">દસ્તાવેજો અપલોડ કરો</h3>
+            
+            {/* Result File */}
+            <div className="bg-white p-4 rounded-lg border border-gray-200 mb-4">
+              <div className="flex flex-col gap-2">
+                <label className="text-sm sm:text-base text-gray-700 font-medium">
+                  પરિણામ (માર્કશીટ) - PDF અથવા ઈમેજ :-
+                </label>
+                <input
+                  type="file"
+                  name="resultFile"
+                  onChange={handleFileChange}
+                  accept=".pdf,.jpg,.jpeg,.png"
+                  className="text-sm sm:text-base text-gray-700 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-semibold file:bg-blue-100 file:text-blue-700 hover:file:bg-blue-200 cursor-pointer"
+                />
+                <p className="text-xs text-gray-500 mt-1">PDF, JPG, JPEG અથવા PNG ફાઈલ અપલોડ કરો</p>
+              </div>
+            </div>
+
+            {/* Aadhar Card File */}
+            <div className="bg-white p-4 rounded-lg border border-gray-200">
+              <div className="flex flex-col gap-2">
+                <label className="text-sm sm:text-base text-gray-700 font-medium">
+                  આધાર કાર્ડ - PDF અથવા ઈમેજ :-
+                </label>
+                <input
+                  type="file"
+                  name="aadharFile"
+                  onChange={handleFileChange}
+                  accept=".pdf,.jpg,.jpeg,.png"
+                  className="text-sm sm:text-base text-gray-700 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-semibold file:bg-blue-100 file:text-blue-700 hover:file:bg-blue-200 cursor-pointer"
+                />
+                <p className="text-xs text-gray-500 mt-1">PDF, JPG, JPEG અથવા PNG ફાઈલ અપલોડ કરો</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Family Members Table */}
+          <div className="mb-8">
             <h3 className="font-semibold text-base sm:text-lg text-blue-900 mb-4 pb-2 border-b-2 border-blue-200">
-              ઘરમાં જે ભણતા હોયે એમની વિગત
+              ઘરના અન્ય સભ્યોની વિગત
             </h3>
 
-            <StudentDetailsTable 
-              students={students}
-              setStudents={setStudents}
+            <FamilyMembersTable
+              members={familyMembers}
+              setMembers={setFamilyMembers}
             />
           </div>
 
           {/* Submit */}
           <div className="text-center mt-8 pt-6 border-t-2 border-gray-200">
-            <button 
+            <button
               type="submit"
               disabled={loading}
               className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold px-8 sm:px-12 py-3 rounded-lg text-sm sm:text-base w-full sm:w-auto disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-xl transition-all duration-200 transform hover:scale-105"
