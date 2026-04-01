@@ -24,36 +24,36 @@ export default function FamilyMembersTable() {
     <div className="mt-6">
 
       {members.map((m, i) => (
-        <div key={i} className="border p-4 rounded-lg mb-3 bg-gray-50">
+        <div key={i} className="border p-3 sm:p-4 rounded-lg mb-3 bg-gray-50">
           <div className="flex justify-between mb-4">
-            <span className="font-medium">Member {i + 1}</span>
+            <span className="font-medium text-sm sm:text-base">Member {i + 1}</span>
             {members.length > 1 && (
               <button
                 onClick={() => removeRow(i)}
-                className="text-red-500 text-sm"
+                className="text-red-500 text-xs sm:text-sm"
               >
                 Remove
               </button>
             )}
           </div>
 
-          <div className="flex items-center gap-2 mb-3">
-            <label className="whitespace-nowrap">નામ :-</label>
+          <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2 mb-3">
+            <label className="whitespace-nowrap text-sm sm:text-base">નામ :-</label>
             <input
               type="text"
               value={m.name}
               onChange={(e) => handleChange(i, "name", e.target.value)}
-              className="flex-1 border-b outline-none"
+              className="flex-1 border-b outline-none text-sm sm:text-base"
             />
           </div>
 
-          <div className="flex items-center gap-2">
-            <label className="whitespace-nowrap">મોબાઈલ નંબર :-</label>
+          <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2">
+            <label className="whitespace-nowrap text-sm sm:text-base">મોબાઈલ નંબર :-</label>
             <input
               type="text"
               value={m.mobile}
               onChange={(e) => handleChange(i, "mobile", e.target.value)}
-              className="flex-1 border-b outline-none"
+              className="flex-1 border-b outline-none text-sm sm:text-base"
             />
           </div>
         </div>
@@ -61,7 +61,7 @@ export default function FamilyMembersTable() {
 
       <button
         onClick={addRow}
-        className="bg-green-600 text-white px-4 py-2 rounded"
+        className="bg-green-600 text-white px-3 sm:px-4 py-2 rounded text-sm sm:text-base w-full sm:w-auto"
       >
         + Add Member
       </button>
