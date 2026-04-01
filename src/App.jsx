@@ -82,11 +82,18 @@ export default function App() {
       <div className="bg-white shadow-2xl rounded-lg p-6 sm:p-10 w-full max-w-5xl border-t-4 border-blue-600">
 
         {/* Header */}
-        <div className="border-b-2 border-blue-600 pb-4 mb-6">
-          <h1 className="text-center font-bold text-xl sm:text-2xl text-blue-900 mb-2">
+        <div className="border-b-2 border-red-600 pb-4 mb-6">
+          <div className="flex flex-col items-center mb-4">
+            <img 
+              src="/logo-1.png" 
+              alt="શ્રી શ્રીયાદે પ્રજાપતિ ચેરીટેબલ ટ્રસ્‍ટ" 
+              className="h-20 sm:h-24 w-auto mb-3"
+            />
+          </div>
+          <h1 className="text-center font-bold text-xl sm:text-2xl text-red-700 mb-2">
             જય શ્રી શ્રીયાદેમાં
           </h1>
-          <h2 className="text-center font-semibold text-base sm:text-lg text-blue-800 mb-2">
+          <h2 className="text-center font-semibold text-base sm:text-lg text-red-600 mb-2">
             શ્રી શ્રીયાદે પ્રજાપતિ ચેરીટેબલ ટ્રસ્‍ટ
           </h2>
           <h3 className="text-center text-sm sm:text-base text-gray-700 font-medium">
