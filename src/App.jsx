@@ -121,7 +121,11 @@ export default function App() {
           />
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-4 mt-10">
+        <form onSubmit={handleSubmit} onKeyDown={(e) => {
+          if (e.key === 'Enter' && e.target.tagName !== 'TEXTAREA') {
+            e.preventDefault();
+          }
+        }} className="space-y-4 mt-10">
 
           {/* Student Name */}
           <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2">
@@ -131,6 +135,7 @@ export default function App() {
             <input
               type="text"
               name="studentName"
+              value={formData.studentName}
               onChange={handleChange}
               className="flex-1 border-b outline-none text-sm sm:text-base"
             />
@@ -143,6 +148,7 @@ export default function App() {
               <input
                 type="text"
                 name="fatherName"
+                value={formData.fatherName}
                 onChange={handleChange}
                 className="flex-1 border-b outline-none text-sm sm:text-base"
               />
@@ -152,6 +158,7 @@ export default function App() {
               <input
                 type="text"
                 name="motherName"
+                value={formData.motherName}
                 onChange={handleChange}
                 className="flex-1 border-b outline-none text-sm sm:text-base"
               />
@@ -164,6 +171,7 @@ export default function App() {
             <input
               type="text"
               name="mobile"
+              value={formData.mobile}
               onChange={handleChange}
               className="flex-1 border-b outline-none text-sm sm:text-base"
             />
@@ -174,6 +182,7 @@ export default function App() {
             <label className="whitespace-nowrap text-sm sm:text-base">ઘરનું સરનામું :-</label>
             <textarea
               name="address"
+              value={formData.address}
               onChange={handleChange}
               className="flex-1 border-b outline-none text-sm sm:text-base"
             />
@@ -185,6 +194,7 @@ export default function App() {
             <input
               type="text"
               name="schoolName"
+              value={formData.schoolName}
               onChange={handleChange}
               className="flex-1 border-b outline-none text-sm sm:text-base"
             />
@@ -196,6 +206,7 @@ export default function App() {
             <input
               type="text"
               name="standard"
+              value={formData.standard}
               onChange={handleChange}
               className="flex-1 border-b outline-none text-sm sm:text-base"
             />
@@ -206,6 +217,7 @@ export default function App() {
             <label className="whitespace-nowrap text-sm sm:text-base">શાળાનું સરનામું :-</label>
             <textarea
               name="schoolAddress"
+              value={formData.schoolAddress}
               onChange={handleChange}
               className="flex-1 border-b outline-none text-sm sm:text-base"
             />
