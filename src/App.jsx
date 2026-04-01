@@ -1,6 +1,7 @@
 import { useState } from "react";
 import FamilyMembersTable from "./FamilyMembersTable";
 import StudentDetailsTable from "./StudentDetailsTable";
+import SuccessModal from "./SuccessModal";
 
 export default function App() {
   const [formData, setFormData] = useState({
@@ -28,6 +29,8 @@ export default function App() {
   });
 
   const [loading, setLoading] = useState(false);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [registrationNumber, setRegistrationNumber] = useState("");
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -77,26 +80,9 @@ export default function App() {
       console.log("Response:", data);
 
       if (response.ok) {
-        alert("Form submitted successfully!");
-        // Reset form
-        setFormData({
-          studentName: "",
-          fatherName: "",
-          motherName: "",
-          mobile: "",
-          address: "",
-          schoolName: "",
-          standard: "",
-          schoolAddress: "",
-        });
-        setFamilyMembers([{ name: "", mobile: "" }]);
-        setStudents([{ name: "", class: "", school: "" }]);
-        setFiles({ resultFile: null, aadharFile: null });
-        
-        // Reset file inputs
-        document.querySelectorAll('input[type="file"]').forEach(input => {
-          input.value = '';
-        });
+        // Show success modal with registration number
+        setRegistrationNumber(data.registrationNumber);
+        setShowSuccessModal(true);
       } else {
         alert("Error: " + (data.error || "Failed to submit"));
       }
@@ -108,8 +94,39 @@ export default function App() {
     }
   };
 
+  const handleModalClose = () => {
+    setShowSuccessModal(false);
+    setRegistrationNumber("");
+    
+    // Reset form after user acknowledges
+    setFormData({
+      studentName: "",
+      fatherName: "",
+      motherName: "",
+      mobile: "",
+      address: "",
+      schoolName: "",
+      standard: "",
+      schoolAddress: "",
+    });
+    setFamilyMembers([{ name: "", mobile: "" }]);
+    setStudents([{ name: "", class: "", school: "" }]);
+    setFiles({ resultFile: null, aadharFile: null });
+    
+    // Reset file inputs
+    document.querySelectorAll('input[type="file"]').forEach(input => {
+      input.value = '';
+    });
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50 p-3 sm:p-6 flex justify-center items-start py-8">
+      {/* Success Modal */}
+      <SuccessModal 
+        registrationNumber={registrationNumber}
+        onClose={handleModalClose}
+      />
+      
       <div className="bg-white shadow-2xl rounded-lg p-6 sm:p-10 w-full max-w-5xl border-t-4 border-blue-600">
 
         {/* Header */}
