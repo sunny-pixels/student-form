@@ -41,7 +41,7 @@ export default function App() {
 
       console.log("Sending data:", payload);
 
-      const response = await fetch("http://localhost:3002/api/form/submit", {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/form/submit`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
