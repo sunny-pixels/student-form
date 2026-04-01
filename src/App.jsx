@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import FamilyMembersTable from "./FamilyMembersTable";
 import StudentDetailsTable from "./StudentDetailsTable";
 
@@ -14,14 +14,67 @@ export default function App() {
     schoolAddress: "",
   });
 
+  const [familyMembers, setFamilyMembers] = useState([
+    { name: "", mobile: "" },
+  ]);
+
+  const [students, setStudents] = useState([
+    { name: "", class: "", school: "" },
+  ]);
+
+  const [loading, setLoading] = useState(false);
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
-    alert("Form Submitted");
+    setLoading(true);
+
+    try {
+      const payload = {
+        ...formData,
+        familyMembers,
+        students,
+      };
+
+      console.log("Sending data:", payload);
+
+      const response = await fetch("http://localhost:3002/api/form/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+
+      const data = await response.json();
+      
+      if (response.ok) {
+        alert("Form submitted successfully!");
+        // Reset form
+        setFormData({
+          studentName: "",
+          fatherName: "",
+          motherName: "",
+          mobile: "",
+          address: "",
+          schoolName: "",
+          standard: "",
+          schoolAddress: "",
+        });
+        setFamilyMembers([{ name: "", mobile: "" }]);
+        setStudents([{ name: "", class: "", school: "" }]);
+      } else {
+        alert("Error: " + (data.error || "Failed to submit"));
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      alert("Failed to submit form. Make sure backend is running on port 3002");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -62,7 +115,10 @@ export default function App() {
             ઘરના અન્ય સભ્યોની વિગત :-
           </h3>
 
-          <FamilyMembersTable />
+          <FamilyMembersTable 
+            members={familyMembers}
+            setMembers={setFamilyMembers}
+          />
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-4 mt-10">
@@ -161,13 +217,20 @@ export default function App() {
               ઘરમાં જે ભણતા હોયે એમની વિગત :-
             </h3>
 
-            <StudentDetailsTable />
+            <StudentDetailsTable 
+              students={students}
+              setStudents={setStudents}
+            />
           </div>
 
           {/* Submit */}
           <div className="text-center mt-6">
-            <button className="bg-blue-600 text-white px-4 sm:px-6 py-2 rounded-lg hover:bg-blue-700 text-sm sm:text-base w-full sm:w-auto">
-              Submit
+            <button 
+              type="submit"
+              disabled={loading}
+              className="bg-blue-600 text-white px-4 sm:px-6 py-2 rounded-lg hover:bg-blue-700 text-sm sm:text-base w-full sm:w-auto disabled:bg-blue-400"
+            >
+              {loading ? "Submitting..." : "Submit"}
             </button>
           </div>
 

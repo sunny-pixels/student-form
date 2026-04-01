@@ -1,10 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
-export default function StudentDetailsTable() {
-  const [students, setStudents] = useState([
-    { name: "", class: "", school: "" },
-  ]);
-
+export default function StudentDetailsTable({ students, setStudents }) {
   const handleChange = (index, field, value) => {
     const updated = [...students];
     updated[index][field] = value;
@@ -29,6 +25,7 @@ export default function StudentDetailsTable() {
             <span className="font-medium text-sm sm:text-base">Student {i + 1}</span>
             {students.length > 1 && (
               <button
+                type="button"
                 onClick={() => removeRow(i)}
                 className="text-red-500 text-xs sm:text-sm"
               >
@@ -70,6 +67,7 @@ export default function StudentDetailsTable() {
       ))}
 
       <button
+        type="button"
         onClick={addRow}
         className="bg-green-600 text-white px-3 sm:px-4 py-2 rounded text-sm sm:text-base w-full sm:w-auto"
       >

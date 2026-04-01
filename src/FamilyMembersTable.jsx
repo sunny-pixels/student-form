@@ -1,10 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
-export default function FamilyMembersTable() {
-  const [members, setMembers] = useState([
-    { name: "", mobile: "" },
-  ]);
-
+export default function FamilyMembersTable({ members, setMembers }) {
   const handleChange = (index, field, value) => {
     const updated = [...members];
     updated[index][field] = value;
@@ -29,6 +25,7 @@ export default function FamilyMembersTable() {
             <span className="font-medium text-sm sm:text-base">Member {i + 1}</span>
             {members.length > 1 && (
               <button
+                type="button"
                 onClick={() => removeRow(i)}
                 className="text-red-500 text-xs sm:text-sm"
               >
@@ -60,6 +57,7 @@ export default function FamilyMembersTable() {
       ))}
 
       <button
+        type="button"
         onClick={addRow}
         className="bg-green-600 text-white px-3 sm:px-4 py-2 rounded text-sm sm:text-base w-full sm:w-auto"
       >
