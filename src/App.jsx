@@ -78,41 +78,61 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 p-3 sm:p-6 flex justify-center">
-      <div className="bg-white shadow-xl rounded-2xl p-4 sm:p-8 w-full max-w-4xl">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50 p-3 sm:p-6 flex justify-center items-start py-8">
+      <div className="bg-white shadow-2xl rounded-lg p-6 sm:p-10 w-full max-w-5xl border-t-4 border-blue-600">
 
         {/* Header */}
-        <h1 className="text-center font-bold text-lg sm:text-xl underline mb-2">
-          જય શ્રી શ્રીયાદેમાં
-        </h1>
-        <h2 className="text-center font-semibold text-sm sm:text-base underline mb-2">
-          શ્રી શ્રીયાદે પ્રજાપતિ ચેરીટેબલ ટ્રસ્‍ટ
-        </h2>
-        <h3 className="text-center text-sm sm:text-base underline mb-6">
-          નિ: શુલ્ક ચોપડા વિતરણ લાભાર્થી ફોર્મ ૨૦૨૬
-        </h3>
+        <div className="border-b-2 border-blue-600 pb-4 mb-6">
+          <h1 className="text-center font-bold text-xl sm:text-2xl text-blue-900 mb-2">
+            જય શ્રી શ્રીયાદેમાં
+          </h1>
+          <h2 className="text-center font-semibold text-base sm:text-lg text-blue-800 mb-2">
+            શ્રી શ્રીયાદે પ્રજાપતિ ચેરીટેબલ ટ્રસ્‍ટ
+          </h2>
+          <h3 className="text-center text-sm sm:text-base text-gray-700 font-medium">
+            નિ: શુલ્ક ચોપડા વિતરણ લાભાર્થી ફોર્મ ૨૦૨૬
+          </h3>
+        </div>
 
         {/* Instructions */}
-        <div className="mt-6 text-xs sm:text-sm space-y-2 mt-10">
-          <h3 className="text-center font-bold text-base sm:text-lg underline mb-7">-: સૂચનો :-</h3>
-          <p>1. આ ચોપડા વિતરણ માત્ર અને માત્ર ભણતરને ધ્યાનમાં રાખીને જ કરવામાં આવી
-            રહ્યું છે,
-          </p>
-          <p>2. આ ચોપડા વિતરણ આપણા પુરબીયા પ્રજાપતિ સમાજ પુરતુ જ રાખવામાં આવેલ છે.</p>
-          <p>3. દરેક વિદ્યાર્થીએ પોતાના આધારકાર્ડની તેમજ જે તે ધોરણની પરીક્ષા પાસ કરી હોય
-            એ ધોરણના માર્કશીટની ઝેરોક્ષ ફોર્મની સાથે જોડવાની રહેશે.</p>
-          <p>4. આ ચોપડા વિતરણ ધોરણ ૫ થી ૧૨ ના વિદ્યાર્થીઓ માટે જ રાખવામાં આવેલ છે.</p>
-          <p>5. દરેક વિદ્યાર્થી દીઠ એક ડઝન ચોપડા મફત આપવામાં આવશે, જેનાં વિદ્યાર્થીઓ એ
-            કોઈ પૈસા ચૂકવવાના રહેશે નહિ.</p>
-          <p>6. આ ફોર્મમાં ઘરના અન્ય સભ્યોની વિગત મોબાઈલ નંબર સાથેની આપવાની રહેશે
-            દરેક એ પોતાની ગોત્ર લખવી.</p>
-          <p>7. વિદ્યાર્થીનીઓ સિવાય માતા/ બહેન/ દીકરીઓની વિગતમાં મોબાઈલ નંબર લાખવાના રહેશે નહિ.</p>
+        <div className="bg-blue-50 border-l-4 border-blue-600 p-4 sm:p-6 mb-8 rounded-r-lg">
+          <h3 className="text-center font-bold text-base sm:text-lg text-blue-900 mb-4">સૂચનો</h3>
+          <div className="text-xs sm:text-sm space-y-2 text-gray-800">
+            <p className="flex items-start">
+              <span className="font-semibold mr-2 text-blue-700">1.</span>
+              <span>આ ચોપડા વિતરણ માત્ર અને માત્ર ભણતરને ધ્યાનમાં રાખીને જ કરવામાં આવી રહ્યું છે.</span>
+            </p>
+            <p className="flex items-start">
+              <span className="font-semibold mr-2 text-blue-700">2.</span>
+              <span>આ ચોપડા વિતરણ આપણા પુરબીયા પ્રજાપતિ સમાજ પુરતુ જ રાખવામાં આવેલ છે.</span>
+            </p>
+            <p className="flex items-start">
+              <span className="font-semibold mr-2 text-blue-700">3.</span>
+              <span>દરેક વિદ્યાર્થીએ પોતાના આધારકાર્ડની તેમજ જે તે ધોરણની પરીક્ષા પાસ કરી હોય એ ધોરણના માર્કશીટની ઝેરોક્ષ ફોર્મની સાથે જોડવાની રહેશે.</span>
+            </p>
+            <p className="flex items-start">
+              <span className="font-semibold mr-2 text-blue-700">4.</span>
+              <span>આ ચોપડા વિતરણ ધોરણ ૫ થી ૧૨ ના વિદ્યાર્થીઓ માટે જ રાખવામાં આવેલ છે.</span>
+            </p>
+            <p className="flex items-start">
+              <span className="font-semibold mr-2 text-blue-700">5.</span>
+              <span>દરેક વિદ્યાર્થી દીઠ એક ડઝન ચોપડા મફત આપવામાં આવશે, જેનાં વિદ્યાર્થીઓ એ કોઈ પૈસા ચૂકવવાના રહેશે નહિ.</span>
+            </p>
+            <p className="flex items-start">
+              <span className="font-semibold mr-2 text-blue-700">6.</span>
+              <span>આ ફોર્મમાં ઘરના અન્ય સભ્યોની વિગત મોબાઈલ નંબર સાથેની આપવાની રહેશે દરેક એ પોતાની ગોત્ર લખવી.</span>
+            </p>
+            <p className="flex items-start">
+              <span className="font-semibold mr-2 text-blue-700">7.</span>
+              <span>વિદ્યાર્થીનીઓ સિવાય માતા/ બહેન/ દીકરીઓની વિગતમાં મોબાઈલ નંબર લાખવાના રહેશે નહિ.</span>
+            </p>
+          </div>
         </div>
 
         {/* Family Members Table */}
-        <div className="mt-10">
-          <h3 className="font-semibold mt-6 mb-2 underline text-sm sm:text-base">
-            ઘરના અન્ય સભ્યોની વિગત :-
+        <div className="mb-8">
+          <h3 className="font-semibold text-base sm:text-lg text-blue-900 mb-4 pb-2 border-b-2 border-blue-200">
+            ઘરના અન્ય સભ્યોની વિગત
           </h3>
 
           <FamilyMembersTable 
@@ -125,108 +145,138 @@ export default function App() {
           if (e.key === 'Enter' && e.target.tagName !== 'TEXTAREA') {
             e.preventDefault();
           }
-        }} className="space-y-4 mt-10">
+        }} className="space-y-6">
+
+          <div className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-3 px-4 rounded-lg mb-6">
+            <h2 className="text-center font-semibold text-base sm:text-lg">વિદ્યાર્થીની વિગત</h2>
+          </div>
 
           {/* Student Name */}
-          <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2">
-            <label className="font-medium whitespace-nowrap text-sm sm:text-base">
-              વિદ્યાર્થીનું નામ (ગોત્ર સાથે) :-
-            </label>
-            <input
-              type="text"
-              name="studentName"
-              value={formData.studentName}
-              onChange={handleChange}
-              className="flex-1 border-b outline-none text-sm sm:text-base"
-            />
+          <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
+            <div className="flex flex-col sm:flex-row sm:items-center gap-2">
+              <label className="font-medium whitespace-nowrap text-sm sm:text-base text-gray-700 min-w-fit">
+                વિદ્યાર્થીનું નામ (ગોત્ર સાથે) :-
+              </label>
+              <input
+                type="text"
+                name="studentName"
+                value={formData.studentName}
+                onChange={handleChange}
+                className="flex-1 border-b-2 border-gray-300 focus:border-blue-600 outline-none text-sm sm:text-base px-2 py-1 bg-white rounded"
+                required
+              />
+            </div>
           </div>
 
           {/* Father & Mother */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2">
-              <label className="whitespace-nowrap text-sm sm:text-base">પિતાનું નામ :-</label>
-              <input
-                type="text"
-                name="fatherName"
-                value={formData.fatherName}
-                onChange={handleChange}
-                className="flex-1 border-b outline-none text-sm sm:text-base"
-              />
+            <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
+              <div className="flex flex-col sm:flex-row sm:items-center gap-2">
+                <label className="whitespace-nowrap text-sm sm:text-base text-gray-700 font-medium">પિતાનું નામ :-</label>
+                <input
+                  type="text"
+                  name="fatherName"
+                  value={formData.fatherName}
+                  onChange={handleChange}
+                  className="flex-1 border-b-2 border-gray-300 focus:border-blue-600 outline-none text-sm sm:text-base px-2 py-1 bg-white rounded"
+                  required
+                />
+              </div>
             </div>
-            <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2">
-              <label className="whitespace-nowrap text-sm sm:text-base">માતાનું નામ :-</label>
-              <input
-                type="text"
-                name="motherName"
-                value={formData.motherName}
-                onChange={handleChange}
-                className="flex-1 border-b outline-none text-sm sm:text-base"
-              />
+            <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
+              <div className="flex flex-col sm:flex-row sm:items-center gap-2">
+                <label className="whitespace-nowrap text-sm sm:text-base text-gray-700 font-medium">માતાનું નામ :-</label>
+                <input
+                  type="text"
+                  name="motherName"
+                  value={formData.motherName}
+                  onChange={handleChange}
+                  className="flex-1 border-b-2 border-gray-300 focus:border-blue-600 outline-none text-sm sm:text-base px-2 py-1 bg-white rounded"
+                  required
+                />
+              </div>
             </div>
           </div>
 
           {/* Mobile */}
-          <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2">
-            <label className="whitespace-nowrap text-sm sm:text-base">મોબાઈલ નંબર :-</label>
-            <input
-              type="text"
-              name="mobile"
-              value={formData.mobile}
-              onChange={handleChange}
-              className="flex-1 border-b outline-none text-sm sm:text-base"
-            />
+          <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
+            <div className="flex flex-col sm:flex-row sm:items-center gap-2">
+              <label className="whitespace-nowrap text-sm sm:text-base text-gray-700 font-medium">મોબાઈલ નંબર :-</label>
+              <input
+                type="tel"
+                name="mobile"
+                value={formData.mobile}
+                onChange={handleChange}
+                className="flex-1 border-b-2 border-gray-300 focus:border-blue-600 outline-none text-sm sm:text-base px-2 py-1 bg-white rounded"
+                required
+              />
+            </div>
           </div>
 
           {/* Address */}
-          <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2">
-            <label className="whitespace-nowrap text-sm sm:text-base">ઘરનું સરનામું :-</label>
-            <textarea
-              name="address"
-              value={formData.address}
-              onChange={handleChange}
-              className="flex-1 border-b outline-none text-sm sm:text-base"
-            />
+          <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
+            <div className="flex flex-col gap-2">
+              <label className="whitespace-nowrap text-sm sm:text-base text-gray-700 font-medium">ઘરનું સરનામું :-</label>
+              <textarea
+                name="address"
+                value={formData.address}
+                onChange={handleChange}
+                rows="3"
+                className="flex-1 border-2 border-gray-300 focus:border-blue-600 outline-none text-sm sm:text-base px-3 py-2 bg-white rounded"
+                required
+              />
+            </div>
           </div>
 
           {/* School Name */}
-          <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2">
-            <label className="whitespace-nowrap text-sm sm:text-base">શાળાનું નામ :-</label>
-            <input
-              type="text"
-              name="schoolName"
-              value={formData.schoolName}
-              onChange={handleChange}
-              className="flex-1 border-b outline-none text-sm sm:text-base"
-            />
+          <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
+            <div className="flex flex-col sm:flex-row sm:items-center gap-2">
+              <label className="whitespace-nowrap text-sm sm:text-base text-gray-700 font-medium">શાળાનું નામ :-</label>
+              <input
+                type="text"
+                name="schoolName"
+                value={formData.schoolName}
+                onChange={handleChange}
+                className="flex-1 border-b-2 border-gray-300 focus:border-blue-600 outline-none text-sm sm:text-base px-2 py-1 bg-white rounded"
+                required
+              />
+            </div>
           </div>
 
           {/* Standard */}
-          <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2">
-            <label className="whitespace-nowrap text-sm sm:text-base">ધોરણ :-</label>
-            <input
-              type="text"
-              name="standard"
-              value={formData.standard}
-              onChange={handleChange}
-              className="flex-1 border-b outline-none text-sm sm:text-base"
-            />
+          <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
+            <div className="flex flex-col sm:flex-row sm:items-center gap-2">
+              <label className="whitespace-nowrap text-sm sm:text-base text-gray-700 font-medium">ધોરણ :-</label>
+              <input
+                type="text"
+                name="standard"
+                value={formData.standard}
+                onChange={handleChange}
+                className="flex-1 border-b-2 border-gray-300 focus:border-blue-600 outline-none text-sm sm:text-base px-2 py-1 bg-white rounded"
+                required
+              />
+            </div>
           </div>
 
           {/* School Address */}
-          <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2">
-            <label className="whitespace-nowrap text-sm sm:text-base">શાળાનું સરનામું :-</label>
-            <textarea
-              name="schoolAddress"
-              value={formData.schoolAddress}
-              onChange={handleChange}
-              className="flex-1 border-b outline-none text-sm sm:text-base"
-            />
+          <div className="bg-gray-50 p-4 rounded-lg border border-gray-200">
+            <div className="flex flex-col gap-2">
+              <label className="whitespace-nowrap text-sm sm:text-base text-gray-700 font-medium">શાળાનું સરનામું :-</label>
+              <textarea
+                name="schoolAddress"
+                value={formData.schoolAddress}
+                onChange={handleChange}
+                rows="3"
+                className="flex-1 border-2 border-gray-300 focus:border-blue-600 outline-none text-sm sm:text-base px-3 py-2 bg-white rounded"
+                required
+              />
+            </div>
           </div>
 
           {/* Student Table with class and school name */}
-          <div>
-            <h3 className="font-semibold mt-10 mb-2 underline text-sm sm:text-base">
-              ઘરમાં જે ભણતા હોયે એમની વિગત :-
+          <div className="mt-8">
+            <h3 className="font-semibold text-base sm:text-lg text-blue-900 mb-4 pb-2 border-b-2 border-blue-200">
+              ઘરમાં જે ભણતા હોયે એમની વિગત
             </h3>
 
             <StudentDetailsTable 
@@ -236,12 +286,13 @@ export default function App() {
           </div>
 
           {/* Submit */}
-          <div className="text-center mt-6">
+          <div className="text-center mt-8 pt-6 border-t-2 border-gray-200">
             <button 
               type="submit"
               disabled={loading}
-              className="bg-blue-600 text-white px-4 sm:px-6 py-2 rounded-lg hover:bg-blue-700 text-sm sm:text-base w-full sm:w-auto disabled:bg-blue-400"
+              className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold px-8 sm:px-12 py-3 rounded-lg text-sm sm:text-base w-full sm:w-auto disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-xl transition-all duration-200 transform hover:scale-105"
             >
+              {/* {loading ? "સબમિટ થઈ રહ્યું છે..." : "ફોર્મ સબમિટ કરો"} */}
               {loading ? "Submitting..." : "Submit"}
             </button>
           </div>
