@@ -13,7 +13,10 @@ const storage = new CloudinaryStorage({
   params: {
     folder: "student-forms",
     allowed_formats: ["pdf", "jpg", "jpeg", "png"],
-    resource_type: "auto",
+    resource_type: (req, file) => {
+      // PDFs need 'raw' type, images need 'image' type
+      return file.mimetype === 'application/pdf' ? 'raw' : 'image';
+    },
   },
 });
 
