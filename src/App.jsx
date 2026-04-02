@@ -131,13 +131,13 @@ export default function App() {
 
         {/* Header */}
         <div className="border-b-2 border-red-600 pb-4 mb-6">
-          {/* <div className="flex flex-col items-center mb-4">
+          <div className="flex flex-col items-center mb-4">
             <img
-              src="/logo-1.png"
+              src="/main-logo.png"
               alt="શ્રી શ્રીયાદે પ્રજાપતિ ચેરીટેબલ ટ્રસ્‍ટ"
               className="h-20 sm:h-24 w-auto mb-3"
             />
-          </div> */}
+          </div>
           <h1 className="text-center font-bold text-xl sm:text-2xl text-red-700 mb-2">
             જય શ્રી શ્રીયાદેમાં
           </h1>
